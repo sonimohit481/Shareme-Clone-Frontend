@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoMdSearch, IoMdAdd } from "react-icons/io";
 
 const Navbar = ({ searchTerm, setSearchTerm, user }) => {
-  console.log(user.user.image);
+  // console.log(user);
   const navigate = useNavigate();
   if (!user) return null;
   return (
@@ -24,7 +24,7 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
       </div>
       <div className="flex gap-3">
         <Link to={`user-profile/${user._id}`} className="hidden md:block">
-          <img src={user.user.image} alt="logo" className="w-14 h-11 rounded" />
+          <img src={user.image} alt="logo" className="w-14 h-11 rounded" />
         </Link>
         <Link
           to="create-pin"

@@ -6,7 +6,8 @@ import CreatePin from "../components/CreatePin";
 import Feed from "../components/Feed";
 import PinDetail from "../components/PinDetail";
 
-const Pin = (user) => {
+const Pin = ({ user }) => {
+  // console.log(user);
   const [searchTerm, setSearchTerm] = useState("");
   return (
     <div className="px-2 md:px-5">

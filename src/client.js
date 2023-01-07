@@ -10,6 +10,7 @@ export const client = sanityClient({
 })
 // just to remember 
 const builder = imageUrlBuilder(client);
-export const urlFor = (source) => builder.image(source);
+export const urlFor = (source) => { return builder.image(source) };
+// function urlFor(source) { return builder.image(source) }
 
 //  running our sanity manage commant to get prodict id and token from sanity 

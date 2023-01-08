@@ -6,22 +6,27 @@ import Spinner from "./Spinner";
 import { searchQuery, feedQuery } from "../util/data";
 const Feed = () => {
   const [loading, setLoading] = useState(false);
-  const [pins, setPins] = useState(null);
+  const [pins, setPins] = useState();
   const { categoryId } = useParams();
   useEffect(() => {
-    setLoading(true);
     if (categoryId) {
+      setLoading(true);
       const query = searchQuery(categoryId);
       client.fetch(query).then((data) => setPins(data));
       setLoading(false);
     } else {
+      setLoading(true);
       client.fetch(feedQuery).then((data) => setPins(data));
       setLoading(false);
     }
   }, [categoryId]);
 
-  if (loading)
-    return <Spinner message={"We are doning some new things for you "} />;
+  const ideaName = categoryId || "new";
+  if (loading) {
+    return (
+      <Spinner message={`We are adding ${ideaName} ideas to your feed!`} />
+    );
+  }
   return <div>{pins && <MasonaryLayout pins={pins} />}</div>;
 };
 

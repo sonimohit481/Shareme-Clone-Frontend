@@ -8,7 +8,6 @@ import { client } from "../client";
 import Spinner from "./Spinner";
 
 const CreatePin = ({ user }) => {
-  console.log(user);
   const [title, setTitle] = useState("");
   const [about, setAbout] = useState("");
   const [destination, setDestination] = useState();
@@ -153,7 +152,7 @@ const CreatePin = ({ user }) => {
             <div className="flex gap-2 mt-2 mb-2 items-center bg-white rounded-lg ">
               <img
                 src={user.image}
-                className="w-10 h-10 rounded-full"
+                className="w-8 h-8 rounded-full"
                 alt="user-profile"
               />
               <p className="font-bold">{user.userName}</p>
@@ -173,7 +172,7 @@ const CreatePin = ({ user }) => {
             placeholder="Add a destination link"
             className="outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2"
           />
-
+          {/* for the image categories */}
           <div className="flex flex-col">
             <div>
               <p className="mb-2 font-semibold text:lg sm:text-xl">
@@ -190,6 +189,7 @@ const CreatePin = ({ user }) => {
                 </option>
                 {categories.map((item) => (
                   <option
+                    key={item.name}
                     className="text-base border-0 outline-none capitalize bg-white text-black "
                     value={item.name}
                   >

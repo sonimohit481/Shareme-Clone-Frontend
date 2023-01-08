@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidebar } from "../components/Sidebar";
-import { UserProfile } from "../components/UserProfile";
+import UserProfile from "../components/UserProfile";
 import { HiMenu } from "react-icons/hi";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Link, Route, Routes } from "react-router-dom";

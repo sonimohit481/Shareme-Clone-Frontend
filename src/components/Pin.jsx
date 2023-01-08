@@ -15,7 +15,7 @@ const Pin = ({ pin }) => {
   const navigate = useNavigate();
   const user = fetchUser();
   const alreadySaved = !!pin?.save?.filter(
-    (item) => item?.postedBy?._id === user.sub
+    (item) => item?.postedBy?._id === user?.sub
   )?.length;
   const savePin = (id) => {
     setSavingPost(true);
@@ -26,10 +26,10 @@ const Pin = ({ pin }) => {
         .insert("after", "save[-1]", [
           {
             _key: uuidv4(),
-            userId: user.sub,
+            userId: user?.sub,
             postedBy: {
               _type: "postedBy",
-              _ref: user.sub,
+              _ref: user?.sub,
             },
           },
         ])
@@ -54,7 +54,7 @@ const Pin = ({ pin }) => {
       <div
         onMouseEnter={() => setPostHovered(true)}
         onMouseLeave={() => setPostHovered(false)}
-        onClick={() => navigate(`/post-detail/:${pin._id}`)}
+        onClick={() => navigate(`/pin-detail/${pin._id}`)}
         className=" relative w-auto cursor-zoom-in  hover:shadow-lg  rounded-lg overflow-hidden transition-all duration-500 ease-in-out"
       >
         <img

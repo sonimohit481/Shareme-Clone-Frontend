@@ -5,22 +5,20 @@ import { HiMenu } from "react-icons/hi";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Link, Route, Routes } from "react-router-dom";
 import { userQuery } from "../util/data";
-import Pin from "./Pin";
+import Pins from "./Pins";
 import { client } from "../client";
 import logo from "../assets/logo.png";
 import { useState } from "react";
+import { fetchUser } from "../util/fetchUser";
 const Home = () => {
   const [toggleSideBar, setToggleSideBar] = React.useState(true);
   const [user, setUser] = useState(null);
   const scrollRef = React.useRef(null);
-  const userInfo =
-    localStorage.getItem("user") !== undefined
-      ? JSON.parse(localStorage.getItem("user"))
-      : localStorage.clear();
+  const userInfo = fetchUser();
 
   React.useEffect(() => {
     // for sending backend data
-    const query = userQuery(userInfo.sub);
+    const query = userQuery(userInfo?.sub);
     // console.log(query);
     client.fetch(query).then((data) => setUser(data[0]));
   }, []);
@@ -52,7 +50,7 @@ const Home = () => {
           </Link>
         </div>
         {toggleSideBar && (
-          <div className="fixed w-4/5 bg-white h-screen overflow-y-auto animate-slide-in z-10 shadow-md">
+          <div className="fixed w-3/5 bg-white h-screen overflow-y-auto animate-slide-in z-10 shadow-md">
             <div className="absolute flex justify-end w-full items-center p-2">
               <AiFillCloseCircle
                 fontSize={30}
@@ -67,7 +65,7 @@ const Home = () => {
       <div className="p-2 h-screen overflow-y-scroll flex-1 " ref={scrollRef}>
         <Routes>
           <Route path="/user-profile/:userId" element={<UserProfile />} />
-          <Route path="/*" element={<Pin user={user && user} />} />
+          <Route path="/*" element={<Pins user={user && user} />} />
         </Routes>
       </div>
     </div>

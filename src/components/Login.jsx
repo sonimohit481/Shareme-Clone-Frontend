@@ -13,7 +13,7 @@ const Login = () => {
   const responseGoogle = (response) => {
     localStorage.setItem("user", JSON.stringify(response));
     const { name, picture, sub } = response;
-    // console.log(name, picture, sub);
+    console.log(name, picture, sub);
     const doc = {
       _id: sub,
       _type: "user",

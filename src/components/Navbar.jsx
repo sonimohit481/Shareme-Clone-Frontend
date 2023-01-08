@@ -8,13 +8,12 @@ const Navbar = ({ searchTerm, setSearchTerm, user }) => {
   if (!user) return null;
   return (
     <div className="flex gap-2 md:gap-5 mt-5 w-fill">
-      <div className="flex border-none outline-none justify-start items-center px-5 w-full bg-white rounded-md">
+      <div className="flex justify-start items-center w-full px-2 rounded-md bg-white border-none outline-none focus-within:shadow-sm">
         <IoMdSearch fontSize={21} className=" ml-1" />
         <input
           type={"text"}
           onChange={(e) => {
-            console.log(e.target.value);
-            return setSearchTerm(e.target.value);
+            setSearchTerm(e.target.value);
           }}
           placeholder="Search"
           value={searchTerm}
